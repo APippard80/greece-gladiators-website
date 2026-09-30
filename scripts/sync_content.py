@@ -109,7 +109,7 @@ class DriveSource:
             res = self.api.files().list(
                 q=f"'{folder_id}' in parents and trashed = false",
                 fields="nextPageToken, files(id, name, mimeType, modifiedTime)",
-                pageSize=200, pageToken=token,
+                pageSize=200, pageToken=token, orderBy="name",
                 supportsAllDrives=True, includeItemsFromAllDrives=True).execute()
             items += res.get("files", [])
             token = res.get("nextPageToken")
@@ -308,7 +308,7 @@ def build_item(src, section_key, subdir, folder_name, folder_handle, used):
         return None
     date = fields.get("date", "")
     date_sort = parse_date(date) if date else ""
-    if date and not date_sort:
+    if not date_sort and re.search(r"\d", date):  # "Details Coming Soon" etc. isn't a date attempt
         warn(f"'{folder_name}': couldn't read Date '{date}' for sorting (it still shows as typed)")
 
     image = None
