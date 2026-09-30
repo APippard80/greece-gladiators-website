@@ -222,6 +222,10 @@ section { padding: 64px 0; }
   border-radius: 6px;
   padding: 40px 28px;
 }
+/* Home: every block (including the gray band) sits the same distance apart,
+   edge to edge — margins collapse, so the gap is exactly this value. */
+.home .container > section { padding: 0; margin: 64px 0; }
+.home .offseason { margin-bottom: 0; }
 .section-head { text-align: center; margin-bottom: 40px; }
 .section-head h2 {
   font-family: var(--font-headline);
