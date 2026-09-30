@@ -39,7 +39,7 @@ const FOOTER_HTML = `
   <div class="border-red"></div>
   <div class="footer-inner">
     <img class="footer-wordmark" src="assets/logo/wordmark.png" alt="Greece Gladiators Baseball">
-    <p>&copy; <span class="year"></span> Greece Gladiators 12U Black &middot; Greece, NY</p>
+    <p>&copy; <span class="year"></span> Greece Gladiators (12U Black) &middot; Greece, NY</p>
   </div>
 `;
 

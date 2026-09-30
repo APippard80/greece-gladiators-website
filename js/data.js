@@ -18,17 +18,16 @@
 
 const ROSTER = [
   { number: "1",  name: "Jaxson Ferra",         position: "—", placeholder: false, photo: null, video: null },
-  { number: "2",  name: "Cameron Everhart",     position: "—", placeholder: false, photo: null, video: null },
-  { number: "4",  name: "Logan Jerge",          position: "—", placeholder: false, photo: null, video: null },
-  { number: "5",  name: "Joseph JT Pippard",    position: "—", placeholder: false, photo: null, video: null },
-  { number: "7",  name: "Royal Newton",         position: "—", placeholder: false, photo: null, video: null },
-  { number: "10", name: "Manny Vega",           position: "—", placeholder: false, photo: null, video: null },
-  { number: "11", name: "Declan Spell",         position: "—", placeholder: false, photo: null, video: null },
-  { number: "15", name: "Isaiah Doty",          position: "—", placeholder: false, photo: null, video: null },
+  { number: "2",  name: "Cameron Everhart",     position: "—", placeholder: false, photo: "assets/photos/roster/cameron-everhart.jpg", video: null },
+  { number: "4",  name: "Logan Jerge",          position: "—", placeholder: false, photo: "assets/photos/roster/logan-jerge.jpg", video: null },
+  { number: "5",  name: "Joseph JT Pippard",    position: "—", placeholder: false, photo: "assets/photos/roster/jt-pippard.jpg", video: null },
+  { number: "7",  name: "Royal Newton",         position: "—", placeholder: false, photo: "assets/photos/roster/royal-newton.jpg", video: null },
+  { number: "10", name: "Manny Vega",           position: "—", placeholder: false, photo: "assets/photos/roster/manny-vega.jpg", video: null },
+  { number: "11", name: "Declan Spell",         position: "—", placeholder: false, photo: "assets/photos/roster/declan-spell.jpg", video: null },
+  { number: "15", name: "Isaiah Doty",          position: "—", placeholder: false, photo: "assets/photos/roster/isaiah-doty.jpg", video: null },
   { number: "17", name: "Jaxson Paquette",      position: "—", placeholder: false, photo: null, video: null },
-  { number: "20", name: "Robert Collyer",       position: "—", placeholder: false, photo: null, video: null },
-  { number: "28", name: "Louis Carrion",        position: "—", placeholder: false, photo: null, video: null },
-  { number: "44", name: "Dominic Llerena",      position: "—", placeholder: false, photo: null, video: null },
+  { number: "20", name: "Robert Collyer",       position: "—", placeholder: false, photo: "assets/photos/roster/robert-collyer.jpg", video: null },
+  { number: "44", name: "Dominic Llerena",      position: "—", placeholder: false, photo: "assets/photos/roster/dominic-llerena.jpg", video: null },
 ];
 
 /*
