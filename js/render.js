@@ -101,7 +101,22 @@ function initHidePastToggle() {
   });
 }
 
+function renderPhaseTracks() {
+  document.querySelectorAll(".phase-track[data-phases]").forEach(function (el) {
+    el.innerHTML = SEASON_PHASES.map(function (p) {
+      return (
+        "<li" + (p.current ? ' class="is-current"' : "") + ">" +
+        '<span class="phase-when">' + p.when + "</span>" +
+        '<span class="phase-name">' + p.name + "</span>" +
+        '<span class="phase-note">' + p.note + "</span>" +
+        "</li>"
+      );
+    }).join("");
+  });
+}
+
 document.addEventListener("DOMContentLoaded", function () {
+  renderPhaseTracks();
   renderRoster();
   renderSchedule();
   renderNextUp();

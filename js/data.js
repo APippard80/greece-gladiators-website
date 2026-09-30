@@ -31,6 +31,20 @@ const ROSTER = [
 ];
 
 /*
+  SEASON TIMELINE
+  ---------------
+  The "Off-Season Training -> Season Starts -> Cooperstown" timeline shown on
+  the Home and Schedule pages. When the team moves to the next phase, move
+  `current: true` to that step (and give it a note like "We are here").
+*/
+
+const SEASON_PHASES = [
+  { when: "Fall – Winter", name: "Off-Season Training", note: "We are here", current: true },
+  { when: "Spring 2027",   name: "Season Starts",       note: "Schedule coming soon" },
+  { when: "July 2027",     name: "Cooperstown",         note: "Jul 23–30" },
+];
+
+/*
   SCHEDULE
   --------
   type must be exactly "Game", "Practice", or "Event" (controls the color tag).

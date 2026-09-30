@@ -550,6 +550,9 @@ a.sponsor-card:hover { transform: translateY(-3px); border-color: var(--crimson)
 .offseason h2 { font-family: var(--font-headline); text-transform: uppercase; letter-spacing: 0.5px; font-size: clamp(26px, 4vw, 34px); margin: 0 0 12px; }
 .offseason-copy > p { color: var(--silver); line-height: 1.7; margin: 0; }
 .offseason-copy > p strong { color: var(--white); }
+.offseason-copy > p a { color: var(--white); border-bottom: 1px solid var(--crimson); }
+.offseason--timeline { grid-template-columns: 1fr; grid-template-areas: "top"; }
+.offseason--timeline .offseason-top { border-bottom: 0; }
 .phase-track { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); position: relative; }
 .phase-track::before { content: ""; position: absolute; top: 7px; left: 8px; right: 8px; height: 2px; background: var(--gray-line); }
 .phase-track li { position: relative; padding: 24px 10px 0 0; display: flex; flex-direction: column; gap: 2px; }
