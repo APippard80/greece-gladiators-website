@@ -23,15 +23,6 @@
     {
       "date": "Details Coming Soon",
       "dateSort": "",
-      "description": "Grab a square for the World Series. Every square sold goes toward sending the team to Cooperstown.",
-      "image": null,
-      "link": null,
-      "status": "Upcoming",
-      "title": "World Series Squares"
-    },
-    {
-      "date": "Details Coming Soon",
-      "dateSort": "",
       "description": "Raffle tickets for Boo's Cooler go on sale soon to help fund the trip to Cooperstown.",
       "image": null,
       "link": null,
@@ -39,10 +30,19 @@
       "title": "Boo's Cooler Raffle"
     },
     {
+      "date": "Details Coming Soon",
+      "dateSort": "",
+      "description": "Grab a square for the World Series. Every square sold goes toward sending the team to Cooperstown.",
+      "image": null,
+      "link": null,
+      "status": "Upcoming",
+      "title": "World Series Squares"
+    },
+    {
       "date": "May 30, 2026",
       "dateSort": "2026-05-30",
       "description": "Players and families spent the day washing cars to raise money for Cooperstown. Thank you to everyone who came out!",
-      "image": "assets/photos/car-wash-2026.jpg",
+      "image": "assets/content/fundraisers/car-wash-f7eefb6b.jpg",
       "link": null,
       "status": "Completed",
       "title": "Car Wash"
