@@ -9,7 +9,7 @@
 <link rel="icon" type="image/png" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/styles.css?v=66">
+<link rel="stylesheet" href="css/styles.css?v=68">
 </head>
 <body>
 
@@ -29,6 +29,9 @@
       make sure every player gets to go. <a href="cooperstown.html">Learn more about the trip &rarr;</a>
     </p>
 
+    <!-- Filled from the image in the Drive "Sponsors" folder (see js/content.js) -->
+    <div class="sponsor-flyer" id="sponsor-flyer" hidden></div>
+
     <div class="section-head">
       <h2>Why Sponsor Us</h2>
       <p>Your support goes directly toward getting this team to Cooperstown.</p>
@@ -40,25 +43,11 @@
     </ul>
 
     <div class="section-head">
-      <h2>Team Sponsors <span class="badge-sample">Sample</span></h2>
-      <p>Placeholder sponsor cards below — swap in real logos &amp; names as they come in.</p>
+      <h2>Team Sponsors</h2>
+      <p>Thank you to the businesses and families behind this team.</p>
     </div>
-    <div class="sponsor-grid">
-      <div class="sponsor-card">
-        <div class="sponsor-logo-box">Sponsor Logo</div>
-        <h3>Sponsor Name</h3>
-        <p>Short thank-you blurb goes here.</p>
-      </div>
-      <div class="sponsor-card">
-        <div class="sponsor-logo-box">Sponsor Logo</div>
-        <h3>Sponsor Name</h3>
-        <p>Short thank-you blurb goes here.</p>
-      </div>
-      <div class="sponsor-card">
-        <div class="sponsor-logo-box">Sponsor Logo</div>
-        <h3>Sponsor Name</h3>
-        <p>Short thank-you blurb goes here.</p>
-      </div>
+    <div class="sponsor-grid" data-content="sponsors">
+      <!-- filled in by js/content.js from js/content.json -->
     </div>
 
     <div class="become-sponsor">
@@ -72,9 +61,10 @@
 
 <footer class="site-footer" id="site-footer"><!-- injected by js/partials.js --></footer>
 
-<script src="js/data.js?v=66"></script>
-<script src="js/render.js?v=66"></script>
-<script src="js/partials.js?v=66"></script>
-<script src="js/main.js?v=66"></script>
+<script src="js/data.js?v=68"></script>
+<script src="js/render.js?v=68"></script>
+<script src="js/partials.js?v=68"></script>
+<script src="js/main.js?v=68"></script>
+<script src="js/content.js?v=68"></script>
 </body>
 </html>

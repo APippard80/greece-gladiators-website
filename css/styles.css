@@ -381,7 +381,7 @@ div.player-video.player-placeholder { background: var(--charcoal); }
 .type-game .type-tag { border-color: var(--crimson); color: var(--crimson); }
 
 /* ---------- Sponsors ---------- */
-.sponsor-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 18px; margin-bottom: 50px; }
+.sponsor-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 280px)); justify-content: center; gap: 18px; margin-bottom: 50px; }
 .sponsor-card {
   background: var(--gray);
   border: 1px solid var(--gray-line);
@@ -406,6 +406,13 @@ div.player-video.player-placeholder { background: var(--charcoal); }
 }
 .sponsor-card h3 { font-family: var(--font-display); text-transform: uppercase; margin: 0 0 6px; font-size: 16px; }
 .sponsor-card p { color: var(--silver); font-size: 13px; margin: 0; }
+a.sponsor-card { display: block; transition: transform .15s, border-color .15s; }
+a.sponsor-card:hover { transform: translateY(-3px); border-color: var(--crimson); }
+.sponsor-logo-box.has-logo { background: #fff; border: 1px solid var(--gray-line); padding: 10px; height: 110px; }
+.sponsor-logo-box.has-logo img { max-width: 100%; max-height: 100%; object-fit: contain; }
+.sponsor-flyer { max-width: 520px; margin: 0 auto 50px; }
+.sponsor-flyer img { width: 100%; height: auto; border: 1px solid var(--gray-line); }
+.content-empty { grid-column: 1 / -1; text-align: center; color: var(--silver); padding: 30px 10px; margin: 0; }
 .become-sponsor {
   background: var(--gray);
   border: 1px solid var(--gray-line);
@@ -578,7 +585,7 @@ div.player-video.player-placeholder { background: var(--charcoal); }
 }
 
 /* ---------- Fundraisers ---------- */
-.fundraiser-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 18px; margin-bottom: 50px; }
+.fundraiser-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 330px)); justify-content: center; gap: 18px; margin-bottom: 50px; }
 .fundraiser-card {
   background: var(--gray);
   border: 1px solid var(--gray-line);
@@ -603,6 +610,8 @@ div.player-video.player-placeholder { background: var(--charcoal); }
 .fundraiser-card h3 { font-family: var(--font-display); text-transform: uppercase; margin: 0 0 6px; font-size: 17px; }
 .fundraiser-card .fundraiser-meta { color: var(--silver); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
 .fundraiser-card p { color: var(--silver); font-size: 13px; margin: 0; }
+.fundraiser-card p + p { margin-top: 8px; }
+.fundraiser-card .card-link { display: inline-block; margin-top: 12px; font-family: var(--font-display); text-transform: uppercase; letter-spacing: 1px; font-size: 12px; color: var(--white); border-bottom: 2px solid var(--crimson); }
 .status-chip {
   display: inline-block;
   font-family: var(--font-display);

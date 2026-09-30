@@ -1,0 +1,53 @@
+{
+  "communityService": [
+    {
+      "date": "",
+      "dateSort": "",
+      "description": "The Gladiators are pairing with the Boys & Girls Club for batting practice at the Red Wings.",
+      "image": null,
+      "link": null,
+      "status": "Upcoming",
+      "title": "Batting Practice with the Boys & Girls Club"
+    },
+    {
+      "date": "",
+      "dateSort": "",
+      "description": "The Gladiators will help Our Father's House distribute food to those in need.",
+      "image": null,
+      "link": null,
+      "status": "Upcoming",
+      "title": "Our Father's House Food Distribution"
+    }
+  ],
+  "fundraisers": [
+    {
+      "date": "Details Coming Soon",
+      "dateSort": "",
+      "description": "Grab a square for the World Series. Every square sold goes toward sending the team to Cooperstown.",
+      "image": null,
+      "link": null,
+      "status": "Upcoming",
+      "title": "World Series Squares"
+    },
+    {
+      "date": "Details Coming Soon",
+      "dateSort": "",
+      "description": "Raffle tickets for Boo's Cooler go on sale soon to help fund the trip to Cooperstown.",
+      "image": null,
+      "link": null,
+      "status": "Upcoming",
+      "title": "Boo's Cooler Raffle"
+    },
+    {
+      "date": "May 30, 2026",
+      "dateSort": "2026-05-30",
+      "description": "Players and families spent the day washing cars to raise money for Cooperstown. Thank you to everyone who came out!",
+      "image": "assets/photos/car-wash-2026.jpg",
+      "link": null,
+      "status": "Completed",
+      "title": "Car Wash"
+    }
+  ],
+  "sponsorFlyer": null,
+  "sponsors": []
+}

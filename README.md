@@ -75,21 +75,47 @@ needs to back out of `css/` first. A bare `assets/...` path here loads fine in
 some places and silently 404s in others, which is easy to miss without
 checking network requests.
 
-## How to add sponsors
+## Sponsors, Fundraisers & Community Service (Google Drive)
 
-Open **`sponsors.html`** and copy one `.sponsor-card` block, replacing the logo
-box, name, and blurb. Drop sponsor logo image files into `assets/sponsors/`.
+These three pages are **not edited here** — their cards come from the shared
+Google Drive folder **Gladiators 12U Black Website**:
 
-## How to add fundraisers
-
-Open **`fundraisers.html`** and copy one `.fundraiser-card` block. Each card
-has a status chip — use `status-active`, `status-upcoming`, or
-`status-completed` (these just control the chip's color/label). Swap the
-`<div class="fundraiser-placeholder">Photo Coming Soon</div>` for a real photo
-once you have one:
-```html
-<img class="fundraiser-photo" src="assets/photos/your-photo.jpg" alt="Description">
 ```
+Gladiators 12U Black Website
+├── Sponsors            ← an image dropped directly in here = the sponsor flyer
+├── Fundraisers
+└── Community Service
+```
+
+Inside each, make **one folder per sponsor or event** (any name) holding:
+
+- **one photo** (sponsor logo for sponsors) — if there's more than one, the
+  one named `main` is used
+- **a Google Doc named `Details`**:
+
+```
+Title: World Series Squares
+Date: October 2026
+Status: Upcoming          (Upcoming / Active / Completed / Hidden)
+Link: https://...          (optional)
+Description:
+Grab a square for the World Series. Every square sold goes toward Cooperstown.
+```
+
+Cards sort Active → Upcoming (soonest first) → Completed (most recent first).
+`Status: Hidden` keeps a card off the site; deleting the folder removes it.
+
+**When updates appear:** the GitHub workflow in `.github/workflows/site.yml`
+syncs every morning at 6 AM Eastern (5 AM in winter). To sync right away, open
+the repo's **Actions** tab → **Sync & publish site** → **Run workflow**.
+
+How it works: `scripts/sync_content.py` reads Drive with a read-only Google
+service account (GitHub secret `GOOGLE_SERVICE_ACCOUNT_JSON`, repo variable
+`DRIVE_ROOT_FOLDER_ID`), writes `js/content.json` plus resized photos in
+`assets/content/`, and `js/content.js` builds the cards from that file. Don't
+hand-edit `js/content.json` or `assets/content/` — the next sync overwrites
+them. To test without Drive, lay out the same folders on disk (with
+`Details.txt` files) and run `python scripts/sync_content.py --local <folder>`.
 
 ## Team logo
 
