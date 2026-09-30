@@ -360,6 +360,12 @@ def sync(src):
         content[key] = sort_items(items)
         print(f"{name.title()}: {len(items)} card(s)")
 
+    # An all-empty Drive almost always means the folders were moved or not filled
+    # in yet, so keep what's on the site rather than blanking all three pages.
+    if not any(content[key] for key, _ in SECTIONS.values()) and not content["sponsorFlyer"]:
+        print("Nothing is in the Drive folders yet - leaving the site unchanged.")
+        return
+
     CONTENT_JSON.write_text(json.dumps(content, indent=2, sort_keys=True, ensure_ascii=False) + "\n",
                             encoding="utf-8")
 
