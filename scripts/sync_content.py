@@ -119,7 +119,7 @@ class DriveSource:
     def children(self, node):
         """Returns [(name, kind, handle)], kind in {'folder', 'doc', 'text', 'image', 'other'}."""
         out = []
-        for f in self._list(node or self.root_id):
+        for f in self._list(node["id"] if node else self.root_id):
             ext = Path(f["name"]).suffix.lower()
             if f["mimeType"] == self.FOLDER:
                 kind = "folder"
