@@ -52,7 +52,7 @@ jobs:
 
       - name: Save changes
         run: |
-          git add js/content.json assets/content
+          git add -A js/content.json assets
           if git diff --cached --quiet; then
             echo "Nothing changed in Drive."
           else
