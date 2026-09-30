@@ -107,7 +107,9 @@ Cards sort Active → Upcoming (soonest first) → Completed (most recent first)
 
 **When updates appear:** the GitHub workflow in `.github/workflows/site.yml`
 syncs every morning at 6 AM Eastern (5 AM in winter). To sync right away, open
-the repo's **Actions** tab → **Sync & publish site** → **Run workflow**.
+the repo's **Actions** tab → **Sync & publish site** → **Run workflow** (tick
+**Test run only** to see what the sync finds in Drive without changing the site).
+If every Drive section is empty, the sync leaves the site as it is.
 
 How it works: `scripts/sync_content.py` reads Drive with a read-only Google
 service account (GitHub secret `GOOGLE_SERVICE_ACCOUNT_JSON`, repo variable
