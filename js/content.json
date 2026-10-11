@@ -21,6 +21,24 @@
   ],
   "fundraisers": [
     {
+      "date": "October 17th 2026",
+      "dateSort": "2026-10-17",
+      "description": "We are collecting bottles and can donations to raise funds for our team to play at cooperstown!!",
+      "image": "assets/content/fundraisers/can-drive-33f68c2b.jpg",
+      "link": null,
+      "status": "Active",
+      "title": "Can Drive"
+    },
+    {
+      "date": "Details Coming Soon",
+      "dateSort": "",
+      "description": "Grab a square for the World Series. Every square sold goes toward sending the team to Cooperstown.",
+      "image": "assets/content/fundraisers/world-series-squares-afd27045.jpg",
+      "link": null,
+      "status": "Active",
+      "title": "World Series Squares"
+    },
+    {
       "date": "Details Coming Soon",
       "dateSort": "",
       "description": "Raffle tickets for Boo's Cooler go on sale soon to help fund the trip to Cooperstown.",
@@ -28,15 +46,6 @@
       "link": null,
       "status": "Upcoming",
       "title": "Boo's Cooler Raffle"
-    },
-    {
-      "date": "Details Coming Soon",
-      "dateSort": "",
-      "description": "Grab a square for the World Series. Every square sold goes toward sending the team to Cooperstown.",
-      "image": null,
-      "link": null,
-      "status": "Upcoming",
-      "title": "World Series Squares"
     },
     {
       "date": "May 30, 2026",
