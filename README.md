@@ -91,7 +91,7 @@ Inside each, make **one folder per sponsor or event** (any name) holding:
 
 - **one photo** (sponsor logo for sponsors) — if there's more than one, the
   one named `main` is used
-- **a Google Doc named `Details`**:
+- **a document named `Details`** (a Google Doc or a Word `.docx` file):
 
 ```
 Title: World Series Squares
@@ -106,7 +106,8 @@ Cards sort Active → Upcoming (soonest first) → Completed (most recent first)
 `Status: Hidden` keeps a card off the site; deleting the folder removes it.
 
 **When updates appear:** the GitHub workflow in `.github/workflows/site.yml`
-syncs every morning at 6 AM Eastern (5 AM in winter). To sync right away, open
+syncs four times a day (GitHub often starts these hours late, so allow a few
+hours). To sync right away, open
 the repo's **Actions** tab → **Sync & publish site** → **Run workflow** (tick
 **Test run only** to see what the sync finds in Drive without changing the site).
 If every Drive section is empty, the sync leaves the site as it is.

@@ -8,7 +8,7 @@ Drive layout (folder names must match; letter case doesn't matter):
             <any image here>               <- the sponsor flyer (optional)
             Smith Plumbing/                <- one folder per sponsor
                 logo.png
-                Details                    <- Google Doc (template below)
+                Details                    <- Google Doc or Word .docx (template below)
         Fundraisers/
             World Series Squares/
                 main.jpg
@@ -47,8 +47,10 @@ import json
 import os
 import re
 import sys
+import zipfile
 from datetime import datetime
 from pathlib import Path
+from xml.etree import ElementTree
 
 from PIL import Image, ImageOps
 
@@ -70,6 +72,7 @@ SECTIONS = {
 }
 
 IMAGE_EXTS = {".jpg", ".jpeg", ".png", ".gif", ".webp", ".heic", ".heif"}
+DOCX_MIME = "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
 STATUSES = {"upcoming": "Upcoming", "active": "Active", "completed": "Completed", "hidden": "Hidden"}
 STATUS_ORDER = {"Active": 0, "Upcoming": 1, "Completed": 2}
 MAX_PHOTO_PX = 1200
@@ -84,6 +87,25 @@ warnings = []
 def warn(msg):
     warnings.append(msg)
     print("WARNING: " + msg, file=sys.stderr)
+
+
+def docx_text(data):
+    """Plain text of a Word (.docx) file, one line per paragraph."""
+    ns = "{http://schemas.openxmlformats.org/wordprocessingml/2006/main}"
+    with zipfile.ZipFile(io.BytesIO(data)) as z:
+        root = ElementTree.fromstring(z.read("word/document.xml"))
+    lines = []
+    for para in root.iter(ns + "p"):
+        parts = []
+        for el in para.iter():
+            if el.tag == ns + "t":
+                parts.append(el.text or "")
+            elif el.tag == ns + "tab":
+                parts.append("\t")
+            elif el.tag in (ns + "br", ns + "cr"):
+                parts.append("\n")
+        lines.append("".join(parts))
+    return "\n".join(lines)
 
 
 # ---------------------------------------------------------------- sources ---
@@ -125,6 +147,8 @@ class DriveSource:
                 kind = "folder"
             elif f["mimeType"] == self.GDOC:
                 kind = "doc"
+            elif f["mimeType"] == DOCX_MIME or ext == ".docx":
+                kind = "docx"
             elif f["mimeType"] == "text/plain" or ext == ".txt":
                 kind = "text"
             elif f["mimeType"].startswith("image/") or ext in IMAGE_EXTS:
@@ -139,6 +163,8 @@ class DriveSource:
             data = self.api.files().export(fileId=handle["id"], mimeType="text/plain").execute()
         else:
             data = self.api.files().get_media(fileId=handle["id"]).execute()
+        if handle["mimeType"] == DOCX_MIME or handle["name"].lower().endswith(".docx"):
+            return docx_text(data)
         return data.decode("utf-8", errors="replace")
 
     def read_bytes(self, handle):
@@ -159,12 +185,14 @@ class LocalSource:
         out = []
         for p in sorted(folder.iterdir()):
             ext = p.suffix.lower()
-            kind = ("folder" if p.is_dir() else "text" if ext == ".txt"
+            kind = ("folder" if p.is_dir() else "text" if ext == ".txt" else "docx" if ext == ".docx"
                     else "image" if ext in IMAGE_EXTS else "other")
             out.append((p.name, kind, p))
         return out
 
     def read_text(self, handle):
+        if handle.suffix.lower() == ".docx":
+            return docx_text(handle.read_bytes())
         return handle.read_text(encoding="utf-8", errors="replace")
 
     def read_bytes(self, handle):
@@ -290,7 +318,7 @@ def sort_items(items):
 
 def build_item(src, section_key, subdir, folder_name, folder_handle, used):
     kids = src.children(folder_handle)
-    docs = [(n, h) for n, k, h in kids if k in ("doc", "text")]
+    docs = [(n, h) for n, k, h in kids if k in ("doc", "docx", "text")]
     images = [(n, h) for n, k, h in kids if k == "image"]
 
     details_handle = next((h for n, h in docs if Path(n).stem.strip().lower() == "details"), None)
