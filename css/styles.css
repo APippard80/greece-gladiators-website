@@ -725,7 +725,8 @@ img.photo-tile:hover {
 .photo-credit { text-align: center; color: var(--silver); font-size: 13px; margin-top: 34px; }
 .photo-credit a { color: var(--white); border-bottom: 1px solid var(--crimson); }
 
-/* Lightbox (inert until real photos are added) */
+/* Lightbox — opens any [data-full] image (see js/main.js) */
+[data-full] { cursor: zoom-in; }
 .lightbox {
   position: fixed;
   inset: 0;

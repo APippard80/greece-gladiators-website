@@ -64,7 +64,7 @@ function visible(items) {
 function eventCard(item) {
   const status = (item.status || "").trim();
   const photo = item.image
-    ? '<img class="fundraiser-photo" src="' + escapeHtml(item.image) + '" alt="' + escapeHtml(item.title) + '" loading="lazy">'
+    ? '<img class="fundraiser-photo" src="' + escapeHtml(item.image) + '" data-full="' + escapeHtml(item.image) + '" alt="' + escapeHtml(item.title) + '" loading="lazy">'
     : '<div class="fundraiser-placeholder">Photos Coming Soon</div>';
   const link = safeLink(item.link);
   return (
@@ -82,11 +82,13 @@ function eventCard(item) {
 }
 
 function sponsorCard(item) {
+  const link = safeLink(item.link);
+  // A linked card already opens the sponsor's site, so only unlinked logos open full-size.
+  const zoom = link ? "" : ' data-full="' + escapeHtml(item.image) + '"';
   const logo = item.image
-    ? '<div class="sponsor-logo-box has-logo"><img src="' + escapeHtml(item.image) + '" alt="' + escapeHtml(item.title) + ' logo" loading="lazy"></div>'
+    ? '<div class="sponsor-logo-box has-logo"><img src="' + escapeHtml(item.image) + '"' + zoom + ' alt="' + escapeHtml(item.title) + ' logo" loading="lazy"></div>'
     : '<div class="sponsor-logo-box">Sponsor Logo</div>';
   const inner = logo + "<h3>" + escapeHtml(item.title) + "</h3>" + paragraphs(item.description);
-  const link = safeLink(item.link);
   return link
     ? '<a class="sponsor-card is-link" href="' + escapeHtml(link) + '" target="_blank" rel="noopener">' + inner + "</a>"
     : '<div class="sponsor-card">' + inner + "</div>";
@@ -117,8 +119,7 @@ function renderSponsorFlyer(data) {
     return;
   }
   el.innerHTML =
-    '<a href="' + escapeHtml(flyer.image) + '" target="_blank" rel="noopener">' +
-    '<img src="' + escapeHtml(flyer.image) + '" alt="Sponsorship flyer for the Greece Gladiators (12U Black)"></a>';
+    '<img src="' + escapeHtml(flyer.image) + '" data-full="' + escapeHtml(flyer.image) + '" alt="Sponsorship flyer for the Greece Gladiators (12U Black)">';
   el.hidden = false;
 }
 
