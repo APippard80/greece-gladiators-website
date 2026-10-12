@@ -748,6 +748,42 @@ img.photo-tile:hover {
   background: none;
   border: none;
 }
+.lightbox-nav, .lightbox-counter { display: none; }
+.lightbox.is-gallery .lightbox-nav {
+  display: grid; place-items: center;
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 52px; height: 52px; border-radius: 50%;
+  background: rgba(20,20,20,.75); border: 1px solid var(--gray-mid); color: var(--white);
+  font-size: 34px; line-height: 1; padding-bottom: 4px; cursor: pointer;
+  transition: background .15s, border-color .15s;
+}
+.lightbox.is-gallery .lightbox-nav:hover { background: var(--crimson); border-color: var(--crimson); }
+.lightbox-prev { left: 20px; }
+.lightbox-next { right: 20px; }
+.lightbox.is-gallery .lightbox-counter {
+  display: block; position: absolute; bottom: 18px; left: 50%; transform: translateX(-50%);
+  color: var(--white); font-family: var(--font-display); letter-spacing: 1.5px; font-size: 14px;
+  background: rgba(20,20,20,.75); padding: 4px 14px; border-radius: 14px;
+}
+.lightbox.is-gallery img { max-width: calc(100vw - 150px); max-height: calc(100vh - 130px); margin-bottom: 30px; }
+@media (max-width: 600px) {
+  .lightbox.is-gallery img { max-width: 92vw; }
+  .lightbox.is-gallery .lightbox-nav { width: 42px; height: 42px; font-size: 28px; top: auto; bottom: 10px; transform: none; }
+  .lightbox-prev { left: 14px; }
+  .lightbox-next { right: 14px; }
+  .lightbox.is-gallery .lightbox-counter { bottom: 20px; }
+}
+
+/* Card photos that open the lightbox (built by js/content.js) */
+.photo-viewable { position: relative; display: block; }
+.photo-viewable:focus-visible { outline: 2px solid var(--white); outline-offset: -2px; }
+.photo-count {
+  position: absolute; right: 10px; bottom: 10px;
+  background: rgba(10,10,10,.8); color: var(--white); border: 1px solid var(--gray-mid);
+  font-family: var(--font-display); letter-spacing: 1px; font-size: 12px;
+  padding: 3px 9px; border-radius: 12px; pointer-events: none;
+}
+.sponsor-logo-box .photo-viewable { height: 100%; display: flex; align-items: center; justify-content: center; }
 
 /* Footer */
 footer.site-footer {

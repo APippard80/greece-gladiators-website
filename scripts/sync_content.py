@@ -5,13 +5,14 @@ Drive layout (folder names must match; letter case doesn't matter):
 
     Gladiators 12U Black Website/          <- DRIVE_ROOT_FOLDER_ID points here
         Sponsors/
-            <any image here>               <- the sponsor flyer (optional)
+            <any images here>              <- the sponsor flyer(s) (optional)
             Smith Plumbing/                <- one folder per sponsor
                 logo.png
                 Details                    <- Google Doc or Word .docx (template below)
         Fundraisers/
             World Series Squares/
-                main.jpg
+                main.jpg                   <- shown on the card; any other photos
+                2.jpg, 3.jpg ...           <- (up to 20) scroll in the full-size viewer
                 Details
         Community Service/
             Our Father's House/
@@ -77,6 +78,7 @@ STATUSES = {"upcoming": "Upcoming", "active": "Active", "completed": "Completed"
 STATUS_ORDER = {"Active": 0, "Upcoming": 1, "Completed": 2}
 MAX_PHOTO_PX = 1200
 MAX_FLYER_PX = 1400
+MAX_PHOTOS = 20  # per event folder (and for sponsor flyers)
 
 DATE_FORMATS = ["%B %d, %Y", "%b %d, %Y", "%B %d %Y", "%b %d %Y", "%m/%d/%Y", "%m/%d/%y",
                 "%Y-%m-%d", "%B %Y", "%b %Y"]
@@ -294,13 +296,29 @@ def save_photo(src, handle, subdir, slug, max_px, used):
     return path.relative_to(SITE_ROOT).as_posix()
 
 
-def pick_photo(images):
-    """Prefers a file named 'main.*'; otherwise the first photo by name."""
-    images = sorted(images, key=lambda x: x[0].lower())
-    for name, handle in images:
-        if Path(name).stem.lower() == "main":
-            return handle
-    return images[0][1] if images else None
+def natural_key(name):
+    """Sorts '2.jpg' before '10.jpg' (numbers compared as numbers)."""
+    return [int(part) if part.isdigit() else part for part in re.split(r"(\d+)", name.lower())]
+
+
+def order_photos(images):
+    """The photo named 'main.*' first, then the rest by file name."""
+    return [h for n, h in sorted(images, key=lambda x: (Path(x[0]).stem.lower() != "main", natural_key(x[0])))]
+
+
+def save_photos(src, images, subdir, slug, max_px, used, label):
+    """Saves up to MAX_PHOTOS photos in display order; returns their site paths."""
+    handles = order_photos(images)
+    if len(handles) > MAX_PHOTOS:
+        warn(f"'{label}' has {len(handles)} photos - only the first {MAX_PHOTOS} are used")
+        handles = handles[:MAX_PHOTOS]
+    paths = []
+    for handle in handles:
+        try:
+            paths.append(save_photo(src, handle, subdir, slug, max_px, used))
+        except Exception as e:  # a bad photo shouldn't take the whole card down
+            warn(f"'{label}': couldn't process a photo ({e})")
+    return paths
 
 
 # ------------------------------------------------------------------- sync ---
@@ -339,19 +357,14 @@ def build_item(src, section_key, subdir, folder_name, folder_handle, used):
     if not date_sort and re.search(r"\d", date):  # "Details Coming Soon" etc. isn't a date attempt
         warn(f"'{folder_name}': couldn't read Date '{date}' for sorting (it still shows as typed)")
 
-    image = None
-    photo = pick_photo(images)
-    if photo is not None:
-        try:
-            image = save_photo(src, photo, subdir, slugify(folder_name), MAX_PHOTO_PX, used)
-        except Exception as e:  # a bad photo shouldn't take the whole card down
-            warn(f"'{folder_name}': couldn't process the photo ({e})")
+    photos = save_photos(src, images, subdir, slugify(folder_name), MAX_PHOTO_PX, used, folder_name)
 
     return {
         "date": date,
         "dateSort": date_sort,
         "description": fields.get("description", ""),
-        "image": image,
+        "image": photos[0] if photos else None,  # the card photo
+        "images": photos,                        # everything the viewer scrolls through
         "link": safe_link(fields.get("link")),
         "status": status,
         "title": title,
@@ -373,6 +386,7 @@ def sync(src):
         if name not in top:
             warn(f"no '{name.title()}' folder in Drive - that page will show as empty")
         else:
+            loose_images = []
             for child_name, kind, handle in src.children(top[name]):
                 if kind == "folder":
                     try:
@@ -382,9 +396,12 @@ def sync(src):
                         continue
                     if item:
                         items.append(item)
-                elif kind == "image" and key == "sponsors" and content["sponsorFlyer"] is None:
-                    content["sponsorFlyer"] = {
-                        "image": save_photo(src, handle, subdir, "sponsor-flyer", MAX_FLYER_PX, used)}
+                elif kind == "image" and key == "sponsors":
+                    loose_images.append((child_name, handle))
+            if loose_images:  # images loose in the Sponsors folder = sponsor flyer(s)
+                flyers = save_photos(src, loose_images, subdir, "sponsor-flyer", MAX_FLYER_PX, used, "Sponsors flyers")
+                if flyers:
+                    content["sponsorFlyer"] = {"image": flyers[0], "images": flyers}
         content[key] = sort_items(items)
         print(f"{name.title()}: {len(items)} card(s)")
 

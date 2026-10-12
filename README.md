@@ -82,15 +82,17 @@ Google Drive folder **Gladiators 12U Black Website**:
 
 ```
 Gladiators 12U Black Website
-├── Sponsors            ← an image dropped directly in here = the sponsor flyer
+├── Sponsors            ← images dropped directly in here = the sponsor flyer(s)
 ├── Fundraisers
 └── Community Service
 ```
 
 Inside each, make **one folder per sponsor or event** (any name) holding:
 
-- **one photo** (sponsor logo for sponsors) — if there's more than one, the
-  one named `main` is used
+- **one or more photos** (sponsor logo for sponsors). The card shows the one
+  named `main` (or the first by name) with a "1 / 5" badge; clicking it opens a
+  full-size viewer that scrolls through all of them — `main` first, then by file
+  name (`2.jpg` before `10.jpg`). Up to 20 per folder.
 - **a document named `Details`** (a Google Doc or a Word `.docx` file):
 
 ```

@@ -61,10 +61,33 @@ function visible(items) {
   });
 }
 
+// All of an item's photos, card photo first (older content.json files only have `image`).
+function photosOf(item) {
+  if (item.images && item.images.length) return item.images;
+  return item.image ? [item.image] : [];
+}
+
+// A clickable photo that opens the full-size viewer (js/main.js) and, when
+// there's more than one, scrolls through all of them. `zoom` false = plain image.
+function viewablePhoto(photos, imgClass, alt, zoom) {
+  const img = '<img class="' + imgClass + '" src="' + escapeHtml(photos[0]) + '" alt="' + escapeHtml(alt) + '" loading="lazy">';
+  if (!zoom) return img;
+  const many = photos.length > 1;
+  return (
+    '<div class="photo-viewable" data-full="' + escapeHtml(photos[0]) + '" data-alt="' + escapeHtml(alt) + '"' +
+    (many ? ' data-gallery="' + escapeHtml(JSON.stringify(photos)) + '"' : "") +
+    ' role="button" tabindex="0" aria-label="' + escapeHtml("View " + (many ? photos.length + " photos" : "photo") + ": " + alt) + '">' +
+    img +
+    (many ? '<span class="photo-count">1 / ' + photos.length + "</span>" : "") +
+    "</div>"
+  );
+}
+
 function eventCard(item) {
   const status = (item.status || "").trim();
-  const photo = item.image
-    ? '<img class="fundraiser-photo" src="' + escapeHtml(item.image) + '" data-full="' + escapeHtml(item.image) + '" alt="' + escapeHtml(item.title) + '" loading="lazy">'
+  const photos = photosOf(item);
+  const photo = photos.length
+    ? viewablePhoto(photos, "fundraiser-photo", item.title, true)
     : '<div class="fundraiser-placeholder">Photos Coming Soon</div>';
   const link = safeLink(item.link);
   return (
@@ -83,10 +106,10 @@ function eventCard(item) {
 
 function sponsorCard(item) {
   const link = safeLink(item.link);
+  const photos = photosOf(item);
   // A linked card already opens the sponsor's site, so only unlinked logos open full-size.
-  const zoom = link ? "" : ' data-full="' + escapeHtml(item.image) + '"';
-  const logo = item.image
-    ? '<div class="sponsor-logo-box has-logo"><img src="' + escapeHtml(item.image) + '"' + zoom + ' alt="' + escapeHtml(item.title) + ' logo" loading="lazy"></div>'
+  const logo = photos.length
+    ? '<div class="sponsor-logo-box has-logo">' + viewablePhoto(photos, "sponsor-logo", item.title + " logo", !link) + "</div>"
     : '<div class="sponsor-logo-box">Sponsor Logo</div>';
   const inner = logo + "<h3>" + escapeHtml(item.title) + "</h3>" + paragraphs(item.description);
   return link
@@ -118,8 +141,7 @@ function renderSponsorFlyer(data) {
     el.hidden = true;
     return;
   }
-  el.innerHTML =
-    '<img src="' + escapeHtml(flyer.image) + '" data-full="' + escapeHtml(flyer.image) + '" alt="Sponsorship flyer for the Greece Gladiators (12U Black)">';
+  el.innerHTML = viewablePhoto(photosOf(flyer), "sponsor-flyer-img", "Sponsorship flyer for the Greece Gladiators (12U Black)", true);
   el.hidden = false;
 }
 
