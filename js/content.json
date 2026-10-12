@@ -5,6 +5,7 @@
       "dateSort": "",
       "description": "The Gladiators are pairing with the Boys & Girls Club for batting practice at the Red Wings.",
       "image": null,
+      "images": [],
       "link": null,
       "status": "Upcoming",
       "title": "Batting Practice with the Boys & Girls Club"
@@ -14,6 +15,7 @@
       "dateSort": "",
       "description": "The Gladiators will help Our Father's House distribute food to those in need.",
       "image": null,
+      "images": [],
       "link": null,
       "status": "Upcoming",
       "title": "Our Father's House Food Distribution"
@@ -25,33 +27,46 @@
       "dateSort": "2026-10-17",
       "description": "We are collecting bottles and can donations to raise funds for our team to play at cooperstown!!",
       "image": "assets/content/fundraisers/can-drive-33f68c2b.jpg",
+      "images": [
+        "assets/content/fundraisers/can-drive-33f68c2b.jpg"
+      ],
       "link": null,
       "status": "Active",
       "title": "Can Drive"
+    },
+    {
+      "date": "October 29th 2026",
+      "dateSort": "2026-10-29",
+      "description": "Raffle tickets for Boo's Cooler are on sale now, help us fund the trip to Cooperstown.",
+      "image": "assets/content/fundraisers/boo-s-cooler-raffle-b51f236e.jpg",
+      "images": [
+        "assets/content/fundraisers/boo-s-cooler-raffle-b51f236e.jpg",
+        "assets/content/fundraisers/boo-s-cooler-raffle-7f3b3d76.jpg"
+      ],
+      "link": null,
+      "status": "Active",
+      "title": "Boo's Cooler Raffle"
     },
     {
       "date": "Details Coming Soon",
       "dateSort": "",
       "description": "Grab a square for the World Series. Every square sold goes toward sending the team to Cooperstown.",
       "image": "assets/content/fundraisers/world-series-squares-afd27045.jpg",
+      "images": [
+        "assets/content/fundraisers/world-series-squares-afd27045.jpg"
+      ],
       "link": null,
       "status": "Active",
       "title": "World Series Squares"
-    },
-    {
-      "date": "Details Coming Soon",
-      "dateSort": "",
-      "description": "Raffle tickets for Boo's Cooler go on sale soon to help fund the trip to Cooperstown.",
-      "image": null,
-      "link": null,
-      "status": "Upcoming",
-      "title": "Boo's Cooler Raffle"
     },
     {
       "date": "May 30, 2026",
       "dateSort": "2026-05-30",
       "description": "Players and families spent the day washing cars to raise money for Cooperstown. Thank you to everyone who came out!",
       "image": "assets/content/fundraisers/car-wash-f7eefb6b.jpg",
+      "images": [
+        "assets/content/fundraisers/car-wash-f7eefb6b.jpg"
+      ],
       "link": null,
       "status": "Completed",
       "title": "Car Wash"
